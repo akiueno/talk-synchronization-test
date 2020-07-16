@@ -1,9 +1,9 @@
 import firebase from '../../firebase/index';
+import { createActions } from 'redux-actions';
 
-export const AUTH = 'AUTH';
-
-export const auth = () => async dispatch => {
-	const adminUser = firebase.auth().onAuthStateChanged(async (user) => {
+const getAdminUser = () => {
+  console.log("start auth")
+  firebase.auth().onAuthStateChanged(async (user) => {
     if (user) {
       // ログインしている
       console.log(user); // null
@@ -37,11 +37,46 @@ export const auth = () => async dispatch => {
         .catch(function (error) {
           console.log('Error getting document:', error);
         });
-    } else {
-			//ログインしてない
-			return {}
-    }
-	});
 
-	dispatch({ type: AUTH, adminUser });
+      console.log("new user");
+      console.log(user.name);
+      console.log('new user');
+      return user;
+    } else {
+      //ログインしてない
+      // TODO: ここがnullを返すのでいいのかは要検討
+      return null;
+    }
+  });
 };
+
+// export const auth = () => async dispatch => {
+//   const adminUser = {}
+
+//   getAdminUser()
+
+//   console.log('getAdminUser');
+//   console.log(adminUser);
+//   console.log(getAdminUser);
+//   console.log('getAdminUser');
+
+// 	dispatch({ type: AUTH, adminUser });
+// }
+
+console.log("getAdminUser");
+console.log(getAdminUser);
+console.log(typeof getAdminUser);
+console.log('getAdminUser');
+
+const { auth } = createActions(
+  {
+    auth: getAdminUser()
+  }
+);
+
+// export const auth = () => async (dispatch) => {
+//   const adminUser = await getAdminUser();
+//   dispatch({ type: 'auth', adminUser });
+// };
+
+export { auth };

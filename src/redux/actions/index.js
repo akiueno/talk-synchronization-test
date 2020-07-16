@@ -1,9 +1,5 @@
 import { messages } from './messages';
-import { auth, AUTH } from './auth';
-
-export const actionTypes = {
-  AUTH
-};
+import { auth } from './auth';
 
 export const actions = {
   messages,

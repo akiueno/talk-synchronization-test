@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { Form, FormFeedback, Spinner } from 'reactstrap';
 import Container from '@material-ui/core/Container';
@@ -111,6 +110,5 @@ class Profile extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({ events: state.user });
 
-export default connect(mapStateToProps, null)(Profile);
+export default Profile;
