@@ -45,6 +45,7 @@ class Auth extends React.Component {
           this.user.uid = user.uid;
 
           // firestoreからuser情報を取得する
+          // まずはauthenticationからユーザー情報を取得して、その後firestoreに問い合わせる必要がある
           await firebase
             .firestore()
             .collection('admin_users')

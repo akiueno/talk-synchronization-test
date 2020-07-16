@@ -12,7 +12,7 @@ const messages = handleActions(
       return repos.messages.changeText(state, action.payload);
     },
   },
-  initialState
+  initialState.messages
 );
 
 export {messages};
