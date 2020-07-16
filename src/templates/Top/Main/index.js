@@ -33,10 +33,12 @@ class Main extends Component {
         <div className="b__top-main">
           <Top.ButtonAppBar />
           <div className="b__message-main">
+            {/*  */}
             {this.props.messages.msgs.map((m, i) => (
               <Top.AlignItemsList key={i} msgs={m} />
             ))}
 
+            {/* メッセージ送信のためのフォーム */}
             <div className="textArea">
               <Top.TextInput
                 onChange={this.props.actions.messages.change}

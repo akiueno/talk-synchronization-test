@@ -8,8 +8,6 @@ const {messages} = createActions({
     submit(value, image) {
       const payload = value;
 
-      console.log('ボタンが押されました');
-
       if (payload === '') {
         alert('メッセージを入力してください');
         return false;
