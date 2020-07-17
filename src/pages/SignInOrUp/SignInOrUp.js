@@ -12,9 +12,10 @@ import Button from '@material-ui/core/Button';
 import { Link, withRouter } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
+import { connect } from 'react-redux';
 
 import { Top } from '../../components/core';
-import firebase from '../../firebase/index';
+import { signIn } from '../../redux/actions/auth';
 
 class SignInOrUp extends React.Component {
   state = {
@@ -27,19 +28,9 @@ class SignInOrUp extends React.Component {
     //spinner表示開始
     if (this._isMounted) this.setState({ loading: true });
     //サインイン（ログイン）処理
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(values.email, values.password)
-      .then((res) => {
-        //正常終了時
-        this.props.history.push('/');
-        if (this._isMounted) this.setState({ loading: false });
-      })
-      .catch((error) => {
-        //異常終了時
-        if (this._isMounted) this.setState({ loading: false });
-        alert(error);
-      });
+    console.log(values);
+    this.props.signIn(values);
+    this.props.history.push('/');
   };
 
   componentDidMount = () => {
@@ -70,7 +61,7 @@ class SignInOrUp extends React.Component {
               initialValues={{ email: '', password: '' }}
               onSubmit={(values) => this.handleOnSubmit(values)}
               validationSchema={Yup.object().shape({
-                email: Yup.string().email().required(),
+                email: Yup.string().email(),
                 password: Yup.string().required(),
               })}
             >
@@ -148,4 +139,19 @@ class SignInOrUp extends React.Component {
   }
 }
 
-export default withRouter(SignInOrUp);
+const mapStateToProps = (state) => {
+  return {
+    authError: state.auth.authError,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signIn: (values) => dispatch(signIn(values)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignInOrUp);

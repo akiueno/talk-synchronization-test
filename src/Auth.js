@@ -15,20 +15,17 @@ class Auth extends React.Component {
 
   _isMounted = false; //unmountを判断（エラー防止用）
 
-  async auth() {
-    console.log('actions');
-    console.log(this.props.actions);
-    console.log(this.props.actions.auth);
-    console.log(this.props.actions.auth.type);
-    console.log(this.props.actions.auth.pyload);
-    console.log(this.props.actions.messages);
-    console.log(this.props.actions.messages.submit.type);
-    console.log(this.props.actions.messages.submit.pyload);
-    console.log('actions');
-    console.log('process auth');
+  // async auth() {
+  //   console.log('actions');
+  //   console.log(this.props.actions);
+  //   console.log(this.props.actions.auth);
+  //   console.log(this.props.actions.auth.type);
+  //   console.log(this.props.actions.auth.pyload);
+  //   console.log('actions');
+  //   console.log('process auth');
 
-    await this.props.actions.auth;
-  }
+  //   await this.props.actions.auth;
+  // }
 
   componentDidMount = async () => {
     //mountされてる
@@ -37,20 +34,24 @@ class Auth extends React.Component {
     //ログインしてるかどうかチェックしてる
     console.log('auth in mount');
     console.log(this.props);
-    console.log(this.auth());
+    console.log(this.props.auth);
     console.log('auth in mount');
 
-    await this.auth().then(() => {
-      console.log('end auth');
-    });
+    // await this.auth().then(() => {
+    //   console.log('end auth');
+    // });
 
-    console.log('adminuser');
-    console.log(this.props);
-    console.log(this.props.adminUser);
-    console.log(this.props.adminUser.name);
-    console.log('adminuser');
+    // console.log('adminuser');
+    // console.log(this.props);
+    // console.log(this.props.adminUser);
+    // console.log(this.props.adminUser.name);
+    // console.log('adminuser');
 
-    if (this.props.adminUser) {
+    const { auth } = this.props;
+
+    console.log(auth.uid);
+
+    if (auth.uid) {
       if (this._isMounted) {
         this.setState({
           signinCheck: true,
@@ -68,11 +69,8 @@ class Auth extends React.Component {
     }
   };
 
-  componentWillUnmount = async () => {
+  componentWillUnmount = () => {
     this._isMounted = false;
-    await this.auth().then(() => {
-      console.log('end auth before mount');
-    });
   };
 
   render() {
@@ -88,7 +86,7 @@ class Auth extends React.Component {
     //チェックが終わりかつ
     if (this.state.signedIn) {
       // サインインしてるとき（そのまま表示）
-      if (this.props.adminUser.name) {
+      if (true) {
         return this.props.children;
       } else {
         // 名前を登録していないとき（プロフィール画面にリダイレクト）
@@ -102,15 +100,23 @@ class Auth extends React.Component {
 }
 
 
-const mapStateToProps = (state) => ({ adminUser: state.auth })
+// const mapStateToProps = (state) => ({ adminUser: state.auth })
 
-const mapDispatchToProps = dispatch => {
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     actions: {
+//       auth: bindActionCreators(actions.auth, dispatch),
+//     },
+//   };
+// };
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Auth)
+
+const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    actions: {
-      auth: bindActionCreators(actions.auth, dispatch),
-      messages: bindActionCreators(actions.messages, dispatch),
-    },
+    auth: state.firebase.auth,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Auth)
+export default connect(mapStateToProps, null)(Auth);

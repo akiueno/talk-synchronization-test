@@ -5,8 +5,9 @@ import { initialState } from '../store/initialState';
 
 // export const auth = (adminUser = initialState.adminUser, action) => {
 console.log('reducer')
-console.log(actions.auth)
-console.log(`${actions.auth}`);
+console.log(actions.auth);
+console.log(actions.auth())
+console.log(actions.auth().type);
 console.log(actions.messages);
 console.log(actions.messages.submit);
 console.log('reducer')
@@ -32,13 +33,24 @@ console.log('reducer')
 
 // export { auth };
 
-export default (adminUser = { name: 'initial' }, action) => {
+export default (state = initialState.auth, action) => {
   switch (action.type) {
     case 'auth':
-      return repos.auth.auth(adminUser, action.payload);
-    case undefined:
-      return { name: 'undefined' };
+      console.log('reducer auth');
+      console.log(action);
+      console.log('reducer auth');
+      return repos.auth(state, action.payload);
+    case 'LOGIN_SUCCESS':
+      console.log('login success');
+      return {
+        ...state,
+        authError: null,
+      };
     default:
-      return adminUser;
+      console.log('reducer default');
+      console.log(action);
+      console.log(action.type);
+      console.log('reducer default');
+      return repos.auth(state, { name: 'default' });
   }
 };

@@ -1,7 +1,7 @@
 import {messages} from './messages';
-import { adminUser } from './adminUser';
+import { auth } from './auth';
 
 export const initialState = {
-  adminUser,
+  auth,
   messages,
 };
