@@ -6,6 +6,7 @@ import {actions} from '../../redux/actions';
 const mapStateToProps = state => {
   return {
     messages: state.messages,
+    auth: state.firebase.auth
   };
 };
 

@@ -40,6 +40,12 @@ export default (state = initialState.auth, action) => {
       console.log(action);
       console.log('reducer auth');
       return repos.auth(state, action.payload);
+    case 'LOGIN_ERROR':
+      console.log('login error');
+      return {
+        ...state,
+        authError: 'Login failed',
+      };
     case 'LOGIN_SUCCESS':
       console.log('login success');
       return {
@@ -47,10 +53,6 @@ export default (state = initialState.auth, action) => {
         authError: null,
       };
     default:
-      console.log('reducer default');
-      console.log(action);
-      console.log(action.type);
-      console.log('reducer default');
-      return repos.auth(state, { name: 'default' });
+      return state;
   }
 };

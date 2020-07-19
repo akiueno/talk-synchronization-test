@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux';
+// import { bindActionCreators} from 'redux';
 // import firebase from './firebase/index';
 import LoadingOverlay from 'react-loading-overlay';
 
@@ -49,7 +49,7 @@ class Auth extends React.Component {
 
     const { auth } = this.props;
 
-    console.log(auth.uid);
+    console.log(this.props.auth.uid);
 
     if (auth.uid) {
       if (this._isMounted) {
