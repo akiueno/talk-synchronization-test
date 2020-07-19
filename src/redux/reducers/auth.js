@@ -11,27 +11,6 @@ console.log(actions.auth().type);
 console.log(actions.messages);
 console.log(actions.messages.submit);
 console.log('reducer')
-//   switch (action.type) {
-//     case actionTypes.AUTH:
-//       return action.adminUser;
-//     default:
-//       return adminUser;
-//   }
-// };
-
-// const auth = handleActions(
-//   {
-//     ['auth'](state, action) {
-//       return {name: 'ueno'}
-//       // return repos.auth(state, action.adminUser);
-//     }
-//   },
-//   // default値
-//   // initialState.adminUser
-//   { name: 'initial' }
-// );
-
-// export { auth };
 
 export default (state = initialState.auth, action) => {
   switch (action.type) {
