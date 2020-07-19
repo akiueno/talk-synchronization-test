@@ -113,7 +113,6 @@ class Auth extends React.Component {
 // export default connect(mapStateToProps, mapDispatchToProps)(Auth)
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     auth: state.firebase.auth,
   };

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { firestoreConnect } from 'react-redux-firebase';
 
 import { TopMainPage, Line, SignUp, SignInOrUp, Profile } from './pages';
 
