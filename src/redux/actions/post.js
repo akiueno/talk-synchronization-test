@@ -12,5 +12,5 @@ export const post = (values) => async (dispatch) => {
 		}
 	});
 
-	dispatch({ type: 'posts', response });
+	dispatch({ type: 'post', response });
 };
