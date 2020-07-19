@@ -18,7 +18,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     actions: {
-      posts: bindActionCreators(actions.messages, dispatch),
+      posts: bindActionCreators(actions.post, dispatch),
       messages: bindActionCreators(actions.messages, dispatch),
     },
   };
