@@ -15,18 +15,6 @@ class Auth extends React.Component {
 
   _isMounted = false; //unmountを判断（エラー防止用）
 
-  // async auth() {
-  //   console.log('actions');
-  //   console.log(this.props.actions);
-  //   console.log(this.props.actions.auth);
-  //   console.log(this.props.actions.auth.type);
-  //   console.log(this.props.actions.auth.pyload);
-  //   console.log('actions');
-  //   console.log('process auth');
-
-  //   await this.props.actions.auth;
-  // }
-
   componentDidMount = async () => {
     //mountされてる
     this._isMounted = true;
@@ -36,16 +24,6 @@ class Auth extends React.Component {
     console.log(this.props);
     console.log(this.props.auth);
     console.log('auth in mount');
-
-    // await this.auth().then(() => {
-    //   console.log('end auth');
-    // });
-
-    // console.log('adminuser');
-    // console.log(this.props);
-    // console.log(this.props.adminUser);
-    // console.log(this.props.adminUser.name);
-    // console.log('adminuser');
 
     const { auth } = this.props;
 
@@ -98,19 +76,6 @@ class Auth extends React.Component {
     }
   }
 }
-
-
-// const mapStateToProps = (state) => ({ adminUser: state.auth })
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     actions: {
-//       auth: bindActionCreators(actions.auth, dispatch),
-//     },
-//   };
-// };
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Auth)
 
 const mapStateToProps = (state) => {
   return {

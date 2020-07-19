@@ -21,10 +21,14 @@ function AlignItemsList(props) {
   return (
     <List className={classes.root}>
       <ListItem alignItems="flex-start">
+        {/* lineの形式によって表示方法を変える */}
         <ListItemAvatar>
-          <Avatar alt="Remy Sharp" src={props.msgs.image} />
+          <Avatar
+            alt="ton"
+            src="https://secretldn.com/wp-content/uploads/2017/07/micropig-feature2.jpg"
+          />
         </ListItemAvatar>
-        <ListItemText primary={props.msgs.text} />
+        <ListItemText primary={JSON.stringify(props)} />
       </ListItem>
       <Divider variant="inset" component="li" />
     </List>

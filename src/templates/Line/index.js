@@ -5,12 +5,19 @@ import { firebaseDb } from '../../firebase';
 const messagesRef = firebaseDb.ref('messages');
 
 class Main extends Component {
+  constructor(props) {
+    super(props)
+    this.setState({
+      post: this.props.posts,
+    });
+  }
+
   componentWillMount() {
     messagesRef.on('child_added', (snapshot) => {
       const m = snapshot.val();
-      console.log('snapshot');
-      console.log(m);
-      console.log('snapshot');
+      // console.log('snapshot');
+      // console.log(m);
+      // console.log('snapshot');
       let msgs = this.props.messages.msgs;
 
       msgs.push({
@@ -20,16 +27,31 @@ class Main extends Component {
       this.setState({
         msgs: msgs,
       });
-    });
+
+      this.setState({
+        post: this.props.posts,
+      });
+    })
+
+    // let posts = this.props.posts;
+    // this.setState({
+    //   post: posts,
+    // });
+    ;
   }
 
   render() {
-    console.log('messages');
-    console.log(this.props.messages);
-    console.log('messages');
 
     console.log('line');
     console.log(this.props.posts);
+    console.log(typeof this.props.posts);
+    console.log('line');
+
+    console.log('line');
+    console.log(this.state);
+    // console.log(this.state['msgs']);
+    // console.log(typeof this.state.msgs);
+    // console.log(typeof this.props.posts);
     console.log('line');
 
     return (
@@ -37,8 +59,11 @@ class Main extends Component {
         <div className="b__top-main">
           <Top.ButtonAppBar />
           <div className="b__message-main">
-            {/*  */}
             {this.props.messages.msgs.map((m, i) => (
+              <Top.AlignItemsList key={i} msgs={m} />
+            ))}
+
+            {this.props.posts &&this.props.posts.map((m, i) => (
               <Top.AlignItemsList key={i} msgs={m} />
             ))}
 
