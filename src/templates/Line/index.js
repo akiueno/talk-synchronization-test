@@ -59,24 +59,20 @@ class Main extends Component {
         <div className="b__top-main">
           <Top.ButtonAppBar />
           <div className="b__message-main">
-            {this.props.messages.msgs.map((m, i) => (
-              <Top.AlignItemsList key={i} msgs={m} />
-            ))}
-
-            {this.props.posts &&this.props.posts.map((m, i) => (
+            {this.props.posts.data &&this.props.posts.data.map((m, i) => (
               <Top.AlignItemsList key={i} msgs={m} />
             ))}
 
             {/* メッセージ送信のためのフォーム */}
             <div className="textArea">
               <Top.TextInput
-                onChange={this.props.actions.messages.change}
-                value={this.props.messages.value}
+                onChange={this.props.actions.posts.change}
+                value={this.props.posts.value}
               />
               <Top.SendButton
-                onClick={this.props.actions.messages.submit}
-                value={this.props.messages.value}
-                image={this.props.messages.image}
+                onClick={this.props.actions.posts.post}
+                value={this.props.posts.value}
+                image={this.props.posts.image}
               />
             </div>
           </div>
