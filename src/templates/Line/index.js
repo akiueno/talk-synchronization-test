@@ -41,26 +41,13 @@ class Main extends Component {
   }
 
   render() {
-
-    console.log('line');
-    console.log(this.props.posts);
-    console.log(typeof this.props.posts);
-    console.log('line');
-
-    console.log('line');
-    console.log(this.state);
-    // console.log(this.state['msgs']);
-    // console.log(typeof this.state.msgs);
-    // console.log(typeof this.props.posts);
-    console.log('line');
-
     return (
       <div className="a__top-main">
         <div className="b__top-main">
           <Top.ButtonAppBar />
           <div className="b__message-main">
             {this.props.posts.data &&this.props.posts.data.map((m, i) => (
-              <Top.AlignItemsList key={i} msgs={m} />
+              <Top.AlignItemsList key={i} data={m} />
             ))}
 
             {/* メッセージ送信のためのフォーム */}
