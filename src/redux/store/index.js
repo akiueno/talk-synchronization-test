@@ -24,6 +24,7 @@ export const configureStore = () => {
   console.log("store")
   console.log(initialState);
   console.log(store);
+  console.log(store.getState());
   console.log('store');
   return store;
 };

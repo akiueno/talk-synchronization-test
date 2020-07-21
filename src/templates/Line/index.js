@@ -5,40 +5,6 @@ import { firebaseDb } from '../../firebase';
 const messagesRef = firebaseDb.ref('messages');
 
 class Main extends Component {
-  constructor(props) {
-    super(props)
-    this.setState({
-      post: this.props.posts,
-    });
-  }
-
-  componentWillMount() {
-    messagesRef.on('child_added', (snapshot) => {
-      const m = snapshot.val();
-      // console.log('snapshot');
-      // console.log(m);
-      // console.log('snapshot');
-      let msgs = this.props.messages.msgs;
-
-      msgs.push({
-        image: m.image,
-        text: m.text,
-      });
-      this.setState({
-        msgs: msgs,
-      });
-
-      this.setState({
-        post: this.props.posts,
-      });
-    })
-
-    // let posts = this.props.posts;
-    // this.setState({
-    //   post: posts,
-    // });
-    ;
-  }
 
   render() {
     return (

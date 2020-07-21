@@ -9,15 +9,18 @@ const mapStateToProps = (state) => {
 	console.log(state)
 	console.log('line state');
 
+  // state.posts.data = state.firestore.ordered.user_posts
+
   return {
     posts: {
-      value: '',
+      value: state.posts.value,
+      text: state.posts.text,
       data: state.firestore.ordered.user_posts,
-      image: '',
-      msgs: [],
+      image: state.posts.image,
     },
+    // posts: state.posts,
     messages: state.messages,
-  }
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {

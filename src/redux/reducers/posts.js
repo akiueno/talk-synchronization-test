@@ -4,7 +4,7 @@ import { actions } from '../actions';
 import { repos } from '../repos';
 
 
-const messages = handleActions(
+const posts = handleActions(
   {
     [`${actions.posts.post}`](state, action) {
       return repos.posts.addMessage(state, action.payload);
@@ -16,4 +16,4 @@ const messages = handleActions(
   initialState.posts
 );
 
-export { messages };
+export { posts };
